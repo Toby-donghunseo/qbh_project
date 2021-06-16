@@ -166,10 +166,10 @@ def load_model(ckpt_dir, device='cuda'):
     else:
         model = CnnEncoder(hparams)
     try:
-        model, _, _, _ = load_checkpoint(model_path/'checkpoint_best.pt', model, None, train_on_humming=True)
+        model, _, _, _ = load_checkpoint(model_path/'checkpoint_best.pt', model, None, train_on_humming=True, device=device)
     except:
         model = WrappedModel(model)
-        model, _, _, _ = load_checkpoint(model_path/'checkpoint_best.pt', model, None, train_on_humming=True)
+        model, _, _, _ = load_checkpoint(model_path/'checkpoint_best.pt', model, None, train_on_humming=True, device=device)
         model = model.module
     model = model.to(device)
     return model, hparams

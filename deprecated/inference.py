@@ -83,6 +83,7 @@ def load_model(hparams):
 def load_checkpoint(checkpoint_path, model):
     assert os.path.isfile(checkpoint_path)
     print("Loading checkpoint '{}'".format(checkpoint_path))
+    #fixed value - map_location
     checkpoint_dict = torch.load(checkpoint_path, map_location='cpu')
     model.load_state_dict(checkpoint_dict['state_dict'])
     iteration = checkpoint_dict['iteration']
